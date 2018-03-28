@@ -33,12 +33,17 @@ public class BSTNode extends Element {
  
  protected void delete(int n) {
 	 BSTNode temp;
-	 if(this.key == n && this.right == null & this.left == null)
-	 {
 		//deletes BSTNode
-	 }
 	 //insert code that deletes stuff
  }
+	
+	public int minVal() {//this is for when you want to delete a node but the node has a left leaf so this would return the smalles value in the left leaf.
+		if(this.left == null) {
+			return this.key;
+		}
+		else
+			return left.minVal();
+	}
  //for this compareTo it forced me to change "int" to "Integer" in order for this to not give me an error msg but i dont know what the difference is
  public Integer compareTo(Integer n) {
 		if(this.key > n) {
