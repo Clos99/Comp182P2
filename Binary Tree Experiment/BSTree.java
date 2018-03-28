@@ -6,7 +6,7 @@ public class BSTree {
 	{
 		root = null;
 	}
-	private void balTree(int[] arr) {
+	private void balTree(int[] arr, BSTNode obj) {
 
 	     int mid = arr.length / 2;
 	     int[] temporary = new int[mid];
@@ -14,14 +14,14 @@ public class BSTree {
 		for (int i = 0; i < mid; i++) {//stores the first half the array into temp and goes through balTree again
 			temporary[i] = arr[i];
 			if(i == mid-1) {
-				balTree(temporary);
+				balTree(temporary, root);
 			}
 		}
 		
 		for(int i = mid; i < arr.length; i++) {
 			temporary[i] = arr[i];
 			if(i == arr.length - 1)
-				balTree(temporary);
+				balTree(temporary,root);
 		}
 
 	}
