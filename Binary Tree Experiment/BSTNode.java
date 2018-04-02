@@ -19,11 +19,11 @@ public class BSTNode extends Element {
 	
 	//setter
 	public void setLeft(BSTNode n) {
-		this.left = null;
+		this.left = n;
 	}
 	
 	public void setRight(BSTNode n) {
-		this.right = null;
+		this.right = n;
 	}
 	
 	public void setKey(int k) {
