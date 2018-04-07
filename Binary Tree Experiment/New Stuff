@@ -1,0 +1,169 @@
+	public void delete() {//condesne the deletion cod into one
+		Random r = new Random();
+
+		int randNode;
+		for (int i = 0; i < 511; i++) {
+			randNode = r.nextInt(1022);
+			modifyArray[i]= randNode;// in the instructions it says to re-insert some of the deleted nodes so thats
+											// why i am storing it in modify array
+			tree.delete(randNode);
+		}
+	}
+
+	public void reinsert() {condense the reinsertion code into 1
+		for (int i = 0; i < 255; i++) {
+			tree.insert(modifyArray[i]);// this inserts the deleted nodes
+		}
+
+	}
+  
+  
+  public int getHeight(BSTNode obj) {//gets height
+		if (obj == null) {
+			return 0;
+		}
+		int left = getHeight(obj.getLeft());
+		int right = getHeight(obj.getRight());
+		if (left > right) {
+			return left + 1;
+		}
+		return right + 1;
+
+	}
+  
+  
+  public void storeTreeValues(BSTNode obj) {//for this make sure you have an ArrayList<Itenger> treeValues.
+		if (obj != null) {
+			treeValues.add(obj.getValue());
+			storeTreeValues(obj.getLeft());
+			storeTreeValues(obj.getRight());
+		}
+		return;
+    
+    
+    //This was my main method
+    public static void main(String[] args) {
+		Sample createBalance = new Sample();
+		Sample deleteBalance = new Sample();
+		Sample reinsertBalance = new Sample();
+		Sample createRandom = new Sample();
+		Sample deleteRandom = new Sample();
+		Sample reinsertRandom = new Sample();
+
+		BinaryTreeExperiment Bal = new BinaryTreeExperiment();
+		BinaryTreeExperiment Rand = new BinaryTreeExperiment();
+
+		double start, end, total;// this is to keep track of time
+
+		// this is the beginning of the Balance tree stuff
+		start = System.nanoTime();// tracks time when creation of balance tree starts
+
+		Bal.balTree(Bal.createArray);
+
+		end = System.nanoTime();// tracks time when balance tree is finished
+
+		total = end - start;// this is how much time it took for the balance tree to be created
+		System.out.println("Tree created in :" + total);
+
+		Bal.storeTreeValues(Bal.tree.getRoot());// this stores all the values in the Balance tree
+
+		for (int i = 0; i < Bal.treeValues.size(); i++) {
+			createBalance.addData((double) Bal.treeValues.get(i));// this loads the values into Sample
+		}
+		createBalance.computeStats();// calculates the Values
+		System.out.println("This is the average: " + createBalance.getMean() + " This is the max value: "
+				+ createBalance.getMax());
+
+		Bal.treeValues.clear();// this resets data in treeValues
+
+		// this is the deletion of Bal tree nodes
+
+		start = System.nanoTime();
+		Bal.delete();
+		end = System.nanoTime();
+		total = end - start;
+		System.out.println("It took this long to delete the nodes : " + total);
+
+		Bal.storeTreeValues(Bal.tree.getRoot());
+		for (int i = 0; i < Bal.treeValues.size(); i++) {
+			deleteBalance.addData((double) Bal.treeValues.get(i));
+		}
+		deleteBalance.computeStats();
+		System.out.println("This is the average: " + deleteBalance.getMean() + " This is the max value: "
+				+ deleteBalance.getMax());
+
+		Bal.treeValues.clear();
+
+		// this is the reInsertion of some of the deleted Nodes
+		start = System.nanoTime();
+		Bal.reinsert();
+		end = System.nanoTime();
+		total = end - start;
+		System.out.println("It took this long to reinserts the nodes : " + total);
+
+		Bal.storeTreeValues(Bal.tree.getRoot());
+		for (int i = 0; i < Bal.treeValues.size(); i++) {
+			reinsertBalance.addData((double) Bal.treeValues.get(i));
+		}
+		reinsertBalance.computeStats();
+		System.out.println("This is the average: " + reinsertBalance.getMean() + " This is the max value: "
+				+ reinsertBalance.getMax());
+		// this is the end of Balance tree stuff
+
+		// Random tree time
+
+		start = System.nanoTime();// tracks time when creation of random tree starts
+
+		Rand.randTree();
+
+		end = System.nanoTime();// tracks time when random tree is finished
+
+		total = end - start;// this is how much time it took for the random tree to be created
+
+		System.out.println("Tree created in :" + total);
+
+		Rand.storeTreeValues(Rand.tree.getRoot());// this stores all the values in the random tree
+
+		for (int i = 0; i < Rand.treeValues.size(); i++) {
+			createRandom.addData((double) Rand.treeValues.get(i));// this loads the values into Sample
+		}
+		createRandom.computeStats();// calculates the Values
+		System.out.println(
+				"This is the average: " + createRandom.getMean() + " This is the max value: " + createRandom.getMax());
+
+		Rand.treeValues.clear();// this resets data in treeValues
+
+		// this is the deletion of Rand tree nodes
+
+		start = System.nanoTime();
+		Rand.delete();
+		end = System.nanoTime();
+		total = end - start;
+		System.out.println("It took this long to delete the nodes : " + total);
+
+		Rand.storeTreeValues(Rand.tree.getRoot());
+		for (int i = 0; i < Rand.treeValues.size(); i++) {
+			deleteRandom.addData((double) Rand.treeValues.get(i));
+		}
+		deleteRandom.computeStats();
+		System.out.println(
+				"This is the average: " + deleteRandom.getMean() + " This is the max value: " + deleteRandom.getMax());
+
+		Rand.treeValues.clear();
+
+		// this is the reInsertion of some of the deleted Nodes
+		start = System.nanoTime();
+		Rand.reinsert();
+		end = System.nanoTime();
+		total = end - start;
+		System.out.println("It took this long to delete the nodes : " + total);
+
+		Rand.storeTreeValues(Rand.tree.getRoot());
+		for (int i = 0; i < Rand.treeValues.size(); i++) {
+			reinsertBalance.addData((double) Rand.treeValues.get(i));
+		}
+		reinsertRandom.computeStats();
+		System.out.println("This is the average: " + reinsertRandom.getMean() + " This is the max value: "
+				+ reinsertRandom.getMax());
+
+	}
