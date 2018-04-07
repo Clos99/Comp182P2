@@ -1,7 +1,12 @@
-public int getHeight(BSTNode Obj) {
-		if(Obj != null) {
-			return getHeight(Obj.left) + getHeight(Obj.right) + 1;
-		}
-		else
+public int getHeight(BSTNode Obj) {//previous code add all the nodes together instead of returning the max height...
+		if (Obj == null) {
 			return 0;
+		}
+		int left = getHeight(Obj.getLeft());
+		int right = getHeight(Obj.getRight());
+		if (left > right) {
+			return left + 1;
+		}
+		return right + 1;
+
 	}
