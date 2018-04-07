@@ -1,0 +1,36 @@
+	public void deleteBalNodes() {
+		Random r = new Random();
+
+		int randNode;
+		for (int i = 0; i < 511; i++) {
+			randNode = r.nextInt(1022);
+			modifyArray.add(i, randNode);// in the instructions it says to re-insert some of the deleted nodes so that
+											// is why i am storing it in modify array
+			tree.delete(randNode);
+		}
+	}
+
+	public void reinsertBal() {
+		for (int i = 0; i < 255; i++) {
+			tree.insert(modifyArray.get(i));// this inserts the deleted nodes
+		}
+
+	}
+  
+  public void deleteRandTree() {
+		Random r = new Random();
+
+		int randNode;
+		for (int i = 0; i < 511; i++) {
+			randNode = r.nextInt(1022);
+			modifyArray.add(i, randNode);// in the instructions it says to re-insert some of the deleted nodes so that
+											// is why i am storing it in modify array
+			tree.delete(randNode);
+		}
+	}
+	public void reInsertRand(){
+    for (int i = 0; i < 255; i++) {
+			tree.insert(modifyArray.get(i));// this inserts the deleted nodes
+		}
+ }
+  
