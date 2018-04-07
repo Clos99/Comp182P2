@@ -1,0 +1,7 @@
+public int getHeight(BSTNode Obj) {
+		if(Obj != null) {
+			return getHeight(Obj.left) + getHeight(Obj.right) + 1;
+		}
+		else
+			return 0;
+	}
